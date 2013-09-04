@@ -43,7 +43,7 @@ namespace HawkenExhaust
 
             try
             {
-                new SimpleLauncherGameRelauncher("HawkenGame-Win32-Shipping",
+                new SimpleGameReLauncher("HawkenGame-Win32-Shipping",
                     Path.Combine(hawkenPath, "Binaries", "Win32"),
                     "HawkenLauncher",
                     hawkenPath).runAll();

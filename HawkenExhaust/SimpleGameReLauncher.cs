@@ -17,14 +17,14 @@ namespace HawkenExhaust
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class SimpleLauncherGameRelauncher
+    public class SimpleGameReLauncher
     {
         string gameProcessName;
         string gameProcessPath;
         string launcherProcessName;
         string launcherProcessPath;
 
-        public SimpleLauncherGameRelauncher(string gameProcessName, string gameProcessPath, string launcherProcessName, string launcherProcessPath)
+        public SimpleGameReLauncher(string gameProcessName, string gameProcessPath, string launcherProcessName, string launcherProcessPath)
         {
             this.launcherProcessName = launcherProcessName;
             this.gameProcessName = gameProcessName;
