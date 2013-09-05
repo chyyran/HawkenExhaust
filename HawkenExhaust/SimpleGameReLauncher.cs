@@ -47,8 +47,12 @@ namespace HawkenExhaust
                     }
                 }
                 process.Kill();
-                var gameProcess = Process.Start(Path.Combine(processPath, processName) + ".exe");
-                gameProcess.WaitForExit();
+                process.Dispose(); //Dispoe the old process.
+
+                using (var gameProcess = Process.Start(Path.Combine(processPath, processName) + ".exe"))
+                {
+                    gameProcess.WaitForExit();
+                }             
             }
         }
 
@@ -86,6 +90,7 @@ namespace HawkenExhaust
             {
                 return null;
             }
+            
 
         }
 
@@ -99,7 +104,9 @@ namespace HawkenExhaust
 
         public void startListener()
         {
-            Process.Start(Path.Combine(launcherProcessPath, launcherProcessName)+".exe");
+            var hawkenLauncher = new ProcessStartInfo(Path.Combine(launcherProcessPath, launcherProcessName) + ".exe");
+            hawkenLauncher.WorkingDirectory = launcherProcessPath;
+            using(Process.Start(hawkenLauncher));
             this.LauncherQuitListener(launcherProcessName);
             this.GameProcessListener(gameProcessName, gameProcessPath);
         }

@@ -56,9 +56,7 @@
     <Compile Include="SimpleGameReLauncher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="hawken.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="hawken.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

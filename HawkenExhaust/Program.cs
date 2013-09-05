@@ -35,7 +35,6 @@ namespace HawkenExhaust
                 Environment.Exit(0);
             }
 
-            Application.EnableVisualStyles();
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             notifyIcon.Text = "Hawken is running. HawkenExhaust 0.1";
@@ -48,9 +47,11 @@ namespace HawkenExhaust
                     "HawkenLauncher",
                     hawkenPath).runAll();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
-                MessageBox.Show(String.Format("Error: {0}", e.Message), "Exception occured when launching Hawken");
+                MessageBox.Show("Hawken not found. Please install Hawken from http://www.playhawken.com/ before playing");
+                Process.Start("http://www.playhawken.com/");
+                Environment.Exit(0);
             }
         }
 
