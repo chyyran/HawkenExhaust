@@ -22,7 +22,7 @@ namespace HawkenExhaust
                 {
                     //Do nothing if UAC is open
                 }
-                if (this.GetRunningProcess(this.launcherProcessName) != null)
+                if (SimpleGameReLauncher.GetRunningProcess(this.launcherProcessName) != null)
                 {
                     this.LauncherQuitListener(this.launcherProcessName);
                     return;

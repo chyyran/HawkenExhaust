@@ -51,9 +51,9 @@ namespace HawkenExhaust
                 Process process = null;
                 while (process == null)
                 {
-                    if (this.GetRunningProcess(processName) != null)
+                    if (SimpleGameReLauncher.GetRunningProcess(processName) != null)
                     {
-                        process = this.GetRunningProcess(processName);
+                        process = SimpleGameReLauncher.GetRunningProcess(processName);
                     }
                 }
                 process.Kill();
@@ -78,7 +78,7 @@ namespace HawkenExhaust
             {
                 while (true)
                 {
-                    if (this.GetRunningProcess(launcherProcessName) == null)
+                    if (SimpleGameReLauncher.GetRunningProcess(launcherProcessName) == null)
                     {
                         break;
                     }
@@ -95,7 +95,7 @@ namespace HawkenExhaust
             launcherChecker.RunWorkerAsync();
         }
 
-        protected Process GetRunningProcess(string processName)
+        public static Process GetRunningProcess(string processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);
             if (processes.Length == 1)
