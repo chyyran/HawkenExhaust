@@ -37,12 +37,12 @@ namespace HawkenExhaust
 
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            notifyIcon.Text = "Hawken is running. HawkenExhaust 0.1";
+            notifyIcon.Text = "Hawken is running. HawkenExhaust 0.2";
             notifyIcon.Visible = true;
 
             try
             {
-                new SimpleGameReLauncher("HawkenGame-Win32-Shipping",
+                new HawkenReLauncher("HawkenGame-Win32-Shipping",
                     Path.Combine(hawkenPath, "Binaries", "Win32"),
                     "HawkenLauncher",
                     hawkenPath).runAll();
