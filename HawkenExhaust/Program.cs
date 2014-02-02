@@ -42,7 +42,7 @@ namespace HawkenExhaust
 
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            notifyIcon.Text = "Hawken is running. HawkenExhaust 0.2";
+            notifyIcon.Text = "Hawken is running. HawkenExhaust 0.3";
             notifyIcon.Visible = true;
 
             try
