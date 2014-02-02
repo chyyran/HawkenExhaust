@@ -17,7 +17,7 @@ namespace HawkenExhaust
     {
         static void Main(string[] args)
         {
-            if (SimpleGameReLauncher.GetRunningProcess("HawkenLauncher") != null)
+            if (SimpleGameReLauncher.GetProcess("HawkenLauncher") != null)
             {
                 MessageBox.Show("There can only be one instance of the HawkenLauncher open at a time");
                 Environment.Exit(0);

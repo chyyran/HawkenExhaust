@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace HawkenExhaust
 {
@@ -18,11 +19,10 @@ namespace HawkenExhaust
         /// </summary>
         private void HawkenReLauncher_OnLauncherClose(object sender)
         {
-                while (GetWindowHandle("User Account Control") == true)
-                {
-                    //Do nothing if UAC is open
-                }
-                if (SimpleGameReLauncher.GetRunningProcess(this.launcherProcessName) != null)
+                Task waitUAC = Task.Factory.StartNew(() => GetWindowHandle("User Account Control"));
+                waitUAC.Wait();
+                    
+                if (SimpleGameReLauncher.IsProcessRunning(this.launcherProcessName))
                 {
                     this.LauncherQuitListener(this.launcherProcessName);
                     return;

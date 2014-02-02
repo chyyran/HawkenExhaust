@@ -13,6 +13,7 @@ namespace HawkenExhaust
     using System.Diagnostics;
     using System.ComponentModel;
     using System.IO;
+    using System.Threading;
 
     /// <summary>
     /// TODO: Update summary.
@@ -51,13 +52,15 @@ namespace HawkenExhaust
                 Process process = null;
                 while (process == null)
                 {
-                    if (SimpleGameReLauncher.GetRunningProcess(processName) != null)
+                    if (SimpleGameReLauncher.IsProcessRunning(processName))
                     {
-                        process = SimpleGameReLauncher.GetRunningProcess(processName);
+                        process = SimpleGameReLauncher.GetProcess(processName);
+                        process.Kill();
+                        process.Dispose(); //Dispose the old process.
+                        break;
                     }
+                    Thread.Sleep(500);
                 }
-                process.Kill();
-                process.Dispose(); //Dispose the old process.
 
                 using (var gameProcess = Process.Start(Path.Combine(processPath, processName) + ".exe"))
                 {
@@ -76,26 +79,21 @@ namespace HawkenExhaust
             BackgroundWorker launcherChecker = new BackgroundWorker();
             launcherChecker.DoWork += delegate
             {
-                while (true)
-                {
-                    if (SimpleGameReLauncher.GetRunningProcess(launcherProcessName) == null)
-                    {
-                        break;
-                    }
-                }
-                return;
+                using (Process launcher = SimpleGameReLauncher.GetProcess(launcherProcessName))
+                launcher.WaitForExit();
             };
 
             launcherChecker.RunWorkerCompleted += delegate
             {
                 OnLauncherClose(this);
-                return;
+                launcherChecker.Dispose();
+
             };
 
             launcherChecker.RunWorkerAsync();
         }
 
-        public static Process GetRunningProcess(string processName)
+        public static Process GetProcess(string processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);
             if (processes.Length == 1)
@@ -107,6 +105,20 @@ namespace HawkenExhaust
                 return null;
             }
         }
+
+        public static bool IsProcessRunning(string processName)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            if (processes.Length == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 
         public void checkFiles()

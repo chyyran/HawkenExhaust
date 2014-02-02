@@ -37,7 +37,7 @@
     <ApplicationIcon>hawken.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>HawkenExhaust.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
