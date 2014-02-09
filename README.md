@@ -1,6 +1,9 @@
 HawkenExhaust
 =============
 
+**HawkenExhaust is no longer actively developed due to Hawken having Steamworks integration. Feel free to use the source as SimpleGameReLauncher implementation example.** 
+
+
 HawkenExhaust is a simple utility to enable use of the Steam Overlay in [Hawken](http://playhawken.com) without having to sacrifice use of the Hawken Launcher.
 
 Usage
